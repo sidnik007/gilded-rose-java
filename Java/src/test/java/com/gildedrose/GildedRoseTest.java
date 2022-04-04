@@ -30,4 +30,12 @@ class GildedRoseTest {
         assertEquals(8, app.items[0].quality);
     }
 
+    @Test
+    void shouldNeverHaveNegativeQuality() {
+        Item[] items = new Item[] { new Item("foo", 10, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality);
+    }
+
 }
