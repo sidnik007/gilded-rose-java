@@ -14,4 +14,12 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals("foo", app.items[0].name);
     }
+
+    @Test
+    void decreaseQuality() {
+        Item[] items = new Item[] { new Item("foo", 10, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(9, app.items[0].quality);
+    }
 }
