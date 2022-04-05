@@ -25,7 +25,9 @@ class GildedRose {
 
     private void handleQuality(Item item) {
         if (item.name.equals("Aged Brie")) {
-            inlineMeSoon(item);
+            if (item.quality < 50) {
+                item.quality = item.quality + 1;
+            }
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             inlineMeSoon(item);
         } else {
