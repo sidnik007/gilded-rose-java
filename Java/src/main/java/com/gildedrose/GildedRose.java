@@ -21,6 +21,8 @@ class GildedRose {
             return new AgedBrieStrategy();
         if (item.name.equals(BackStagePassStrategy.NAME))
             return new BackStagePassStrategy();
+        if (item.name.equals(ConjuredManaStrategy.NAME))
+            return new ConjuredManaStrategy();
         return new ItemStrategy();
     }
 
