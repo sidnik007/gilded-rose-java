@@ -42,7 +42,7 @@ class GildedRose {
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         } else if (item.quality > 0) {
-           decrementQuality(item);
+           decrementQuality(item, strategy);
         }
     }
 
@@ -67,11 +67,11 @@ class GildedRose {
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         } else if (item.quality > 0) {
-            decrementQuality(item);
+            decrementQuality(item, strategy);
         }
     }
 
-    private void decrementQuality(Item item) {
+    private void decrementQuality(Item item, ItemStrategy strategy) {
         item.quality = item.quality - 1;
     }
 
