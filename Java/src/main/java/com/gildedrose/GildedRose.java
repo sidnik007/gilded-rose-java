@@ -15,6 +15,8 @@ class GildedRose {
     }
 
     private ItemStrategy createFor(Item item) {
+        if (item.name.equals("Sulfuras, Hand of Ragnaros"))
+            return new SulfurasStrategy();
         return new ItemStrategy();
     }
 

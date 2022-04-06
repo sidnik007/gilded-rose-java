@@ -27,17 +27,12 @@ public class ItemStrategy {
                     incrementQualityIfBelowLimit(item);
                 }
             }
-        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
         } else if (item.quality > 0) {
             decrementQuality(item);
         }
     }
 
     void handleSellin(Item item) {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        }
         item.sellIn = item.sellIn - 1;
     }
 
@@ -50,8 +45,6 @@ public class ItemStrategy {
             incrementQualityIfBelowLimit(item);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             item.quality = item.quality - item.quality;
-        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
         } else if (item.quality > 0) {
             decrementQuality(item);
         }
