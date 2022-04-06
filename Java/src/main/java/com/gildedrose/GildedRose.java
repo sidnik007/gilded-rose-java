@@ -9,9 +9,13 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            ItemStrategy strategy = new ItemStrategy();
+            ItemStrategy strategy = createFor(item);
             strategy.updateQuality(item);
         }
+    }
+
+    private ItemStrategy createFor(Item item) {
+        return new ItemStrategy();
     }
 
 }
