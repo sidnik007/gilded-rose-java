@@ -26,17 +26,17 @@ class GildedRose {
 
     private void handleQuality(Item item, ItemStrategy strategy) {
         if (item.name.equals("Aged Brie")) {
-            incrementQualityIfBelowLimit(item);
+            incrementQualityIfBelowLimit(item, strategy);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             if (item.quality < 50) {
                 item.quality = item.quality + 1;
 
                 if (item.sellIn < 11) {
-                    incrementQualityIfBelowLimit(item);
+                    incrementQualityIfBelowLimit(item, strategy);
                 }
 
                 if (item.sellIn < 6) {
-                    incrementQualityIfBelowLimit(item);
+                    incrementQualityIfBelowLimit(item, strategy);
                 }
             }
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -46,7 +46,7 @@ class GildedRose {
         }
     }
 
-    private void incrementQualityIfBelowLimit(Item item) {
+    private void incrementQualityIfBelowLimit(Item item, ItemStrategy strategy) {
         if (item.quality < 50) {
             item.quality = item.quality + 1;
         }
@@ -61,7 +61,7 @@ class GildedRose {
 
     private void handleExpired(Item item, ItemStrategy strategy) {
         if (item.name.equals("Aged Brie")) {
-            incrementQualityIfBelowLimit(item);
+            incrementQualityIfBelowLimit(item, strategy);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             item.quality = item.quality - item.quality;
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
