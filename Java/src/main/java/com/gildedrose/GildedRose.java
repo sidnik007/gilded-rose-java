@@ -9,22 +9,22 @@ class GildedRose {
 
     public void updateQuality() {
         for (Item item : items) {
-            new ItemStrategy();
-            updateQuality(item);
+            ItemStrategy strategy = new ItemStrategy();
+            updateQuality(item, strategy);
         }
     }
 
-    private void updateQuality(Item item) {
-        handleQuality(item);
+    private void updateQuality(Item item, ItemStrategy strategy) {
+        handleQuality(item, strategy);
 
-        handleSellin(item);
+        handleSellin(item, strategy);
 
-        if (hasExpired(item)) {
-            handleExpired(item);
+        if (hasExpired(item, strategy)) {
+            handleExpired(item, strategy);
         }
     }
 
-    private void handleQuality(Item item) {
+    private void handleQuality(Item item, ItemStrategy strategy) {
         if (item.name.equals("Aged Brie")) {
             incrementQualityIfBelowLimit(item);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -52,14 +52,14 @@ class GildedRose {
         }
     }
 
-    private void handleSellin(Item item) {
+    private void handleSellin(Item item, ItemStrategy strategy) {
         if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         }
         item.sellIn = item.sellIn - 1;
     }
 
-    private void handleExpired(Item item) {
+    private void handleExpired(Item item, ItemStrategy strategy) {
         if (item.name.equals("Aged Brie")) {
             incrementQualityIfBelowLimit(item);
         } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
@@ -71,7 +71,7 @@ class GildedRose {
         }
     }
 
-    private boolean hasExpired(Item item) {
+    private boolean hasExpired(Item item, ItemStrategy strategy) {
         return item.sellIn < 0;
     }
 }
