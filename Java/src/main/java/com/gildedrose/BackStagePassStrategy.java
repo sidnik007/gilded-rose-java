@@ -1,6 +1,7 @@
 package com.gildedrose;
 
 public class BackStagePassStrategy extends ItemStrategy {
+    public static final String NAME = "Backstage passes to a TAFKAL80ETC concert";
 
     @Override
     void handleQuality(Item item) {

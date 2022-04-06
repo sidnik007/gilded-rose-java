@@ -15,11 +15,11 @@ class GildedRose {
     }
 
     private ItemStrategy createFor(Item item) {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros"))
+        if (item.name.equals(SulfurasStrategy.NAME))
             return new SulfurasStrategy();
-        if (item.name.equals("Aged Brie"))
+        if (item.name.equals(AgedBrieStrategy.NAME))
             return new AgedBrieStrategy();
-        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
+        if (item.name.equals(BackStagePassStrategy.NAME))
             return new BackStagePassStrategy();
         return new ItemStrategy();
     }
