@@ -1,4 +1,68 @@
 package com.gildedrose;
 
 public class ItemStrategy {
+    void decrementQuality(Item item) {
+        item.quality = item.quality - 1;
+    }
+
+    void incrementQualityIfBelowLimit(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
+
+    void handleSellin(Item item) {
+        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
+        }
+        item.sellIn = item.sellIn - 1;
+    }
+
+    void handleExpired(Item item) {
+        if (item.name.equals("Aged Brie")) {
+            incrementQualityIfBelowLimit(item);
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            item.quality = item.quality - item.quality;
+        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
+        } else if (item.quality > 0) {
+            decrementQuality(item);
+        }
+    }
+
+    void handleQuality(Item item) {
+        if (item.name.equals("Aged Brie")) {
+            incrementQualityIfBelowLimit(item);
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            if (item.quality < 50) {
+                item.quality = item.quality + 1;
+
+                if (item.sellIn < 11) {
+                    incrementQualityIfBelowLimit(item);
+                }
+
+                if (item.sellIn < 6) {
+                    incrementQualityIfBelowLimit(item);
+                }
+            }
+        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
+        } else if (item.quality > 0) {
+           decrementQuality(item);
+        }
+    }
+
+    boolean hasExpired(Item item) {
+        return item.sellIn < 0;
+    }
+
+    void updateQuality(Item item) {
+        handleQuality(item);
+
+        handleSellin(item);
+
+        if (hasExpired(item)) {
+            handleExpired(item);
+        }
+    }
 }
