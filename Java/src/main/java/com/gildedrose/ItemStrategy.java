@@ -13,9 +13,7 @@ public class ItemStrategy {
     }
 
     void handleQuality(Item item) {
-        if (item.quality > 0) {
-            decrementQuality(item);
-        }
+        decrementQuality(item);
     }
 
     void handleSellin(Item item) {
@@ -27,9 +25,7 @@ public class ItemStrategy {
     }
 
     void handleExpired(Item item) {
-        if (item.quality > 0) {
-            decrementQuality(item);
-        }
+        decrementQuality(item);
     }
 
     void incrementQualityIfBelowLimit(Item item) {
@@ -39,6 +35,8 @@ public class ItemStrategy {
     }
 
     void decrementQuality(Item item) {
-        item.quality = item.quality - 1;
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
+        }
     }
 }
