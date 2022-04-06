@@ -1,32 +1,14 @@
 package com.gildedrose;
 
 public class ItemStrategy {
-    void decrementQuality(Item item) {
-        item.quality = item.quality - 1;
-    }
 
-    void incrementQualityIfBelowLimit(Item item) {
-        if (item.quality < 50) {
-            item.quality = item.quality + 1;
-        }
-    }
+    void updateQuality(Item item) {
+        handleQuality(item);
 
-    void handleSellin(Item item) {
-        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        }
-        item.sellIn = item.sellIn - 1;
-    }
+        handleSellin(item);
 
-    void handleExpired(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            incrementQualityIfBelowLimit(item);
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
-            item.quality = item.quality - item.quality;
-        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
-            return;
-        } else if (item.quality > 0) {
-            decrementQuality(item);
+        if (hasExpired(item)) {
+            handleExpired(item);
         }
     }
 
@@ -48,21 +30,40 @@ public class ItemStrategy {
         } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
             return;
         } else if (item.quality > 0) {
-           decrementQuality(item);
+            decrementQuality(item);
         }
+    }
+
+    void handleSellin(Item item) {
+        if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
+        }
+        item.sellIn = item.sellIn - 1;
     }
 
     boolean hasExpired(Item item) {
         return item.sellIn < 0;
     }
 
-    void updateQuality(Item item) {
-        handleQuality(item);
-
-        handleSellin(item);
-
-        if (hasExpired(item)) {
-            handleExpired(item);
+    void handleExpired(Item item) {
+        if (item.name.equals("Aged Brie")) {
+            incrementQualityIfBelowLimit(item);
+        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+            item.quality = item.quality - item.quality;
+        } else if (item.name.equals("Sulfuras, Hand of Ragnaros")) {
+            return;
+        } else if (item.quality > 0) {
+            decrementQuality(item);
         }
+    }
+
+    void incrementQualityIfBelowLimit(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
+    }
+
+    void decrementQuality(Item item) {
+        item.quality = item.quality - 1;
     }
 }
