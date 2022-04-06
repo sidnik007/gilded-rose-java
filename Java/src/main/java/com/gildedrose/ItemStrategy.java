@@ -13,9 +13,7 @@ public class ItemStrategy {
     }
 
     void handleQuality(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            incrementQualityIfBelowLimit(item);
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             if (item.quality < 50) {
                 item.quality = item.quality + 1;
 
@@ -41,9 +39,7 @@ public class ItemStrategy {
     }
 
     void handleExpired(Item item) {
-        if (item.name.equals("Aged Brie")) {
-            incrementQualityIfBelowLimit(item);
-        } else if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
+        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert")) {
             item.quality = item.quality - item.quality;
         } else if (item.quality > 0) {
             decrementQuality(item);
