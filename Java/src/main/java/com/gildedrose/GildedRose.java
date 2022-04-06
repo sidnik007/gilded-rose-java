@@ -19,6 +19,8 @@ class GildedRose {
             return new SulfurasStrategy();
         if (item.name.equals("Aged Brie"))
             return new AgedBrieStrategy();
+        if (item.name.equals("Backstage passes to a TAFKAL80ETC concert"))
+            return new BackStagePassStrategy();
         return new ItemStrategy();
     }
 
